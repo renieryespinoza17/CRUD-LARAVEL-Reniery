@@ -20,6 +20,9 @@
                     <td>{{ $estudiante->nombre }}</td>
                     <td>{{ $estudiante->correo }}</td>
                     <td>{{ $estudiante->fecha_nacimiento->format('d/m/Y') }}</td>
+                    <td>
+                        <a href="{{ route('estudiantes.edit', $estudiante->id) }}">Editar</a>
+                    </td>
                 </tr>
             @empty
                 <tr>

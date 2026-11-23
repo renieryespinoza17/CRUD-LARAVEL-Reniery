@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($libros as $libro)
+                      @forelse ($libros as $libro)
                 <tr>
                     <td>{{ $libro->id }}</td>
                     <td>{{ $libro->codigo }}</td>
@@ -23,13 +23,18 @@
                     <td>{{ $libro->anio_publicacion }}</td>
                     <td>
                         <a href="{{ route('libros.edit', $libro->id) }}">Editar</a>
+                        <form method="POST"
+                              action="{{ route('libros.destroy', $libro->id) }}"
+                              onsubmit="return confirm('¿Eliminar este libro?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5">No hay libros registrados.</td>
+                    <td colspan="6">No hay libros registrados.</td>
                 </tr>
             @endforelse
-        </tbody>
-    </table>
 @endsection

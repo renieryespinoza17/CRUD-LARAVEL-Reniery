@@ -75,4 +75,13 @@ class LibroController extends Controller
         return redirect()->route('libros.index')
             ->with('exito', 'Libro actualizado correctamente.');
     }
+
+    public function destroy(int $id)
+    {
+        $libro = Libro::findOrFail($id);
+        $libro->delete();
+
+        return redirect()->route('libros.index')
+            ->with('exito', 'Libro eliminado correctamente.');
+    }
 }

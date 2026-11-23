@@ -26,6 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/libros', [LibroController::class, 'store'])
         ->name('libros.store');
 
+    Route::get('/libros/{id}/editar', [LibroController::class, 'edit'])
+        ->whereNumber('id')->name('libros.edit');
+
+    Route::put('/libros/{id}', [LibroController::class, 'update'])
+        ->whereNumber('id')->name('libros.update');
+
     Route::post('/logout', [LoginController::class, 'destroy'])
         ->name('logout');
 

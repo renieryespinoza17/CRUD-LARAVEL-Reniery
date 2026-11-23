@@ -32,7 +32,10 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/productos/{id}', [ProductoController::class, 'update'])
         ->whereNumber('id')->name('productos.update');
-        
+
+            Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])
+        ->whereNumber('id')->name('productos.destroy');
+
     Route::post('/logout', [LoginController::class, 'destroy'])
         ->name('logout');
 });

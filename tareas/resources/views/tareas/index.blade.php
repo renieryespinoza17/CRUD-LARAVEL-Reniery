@@ -22,6 +22,9 @@
                     <td>{{ $tarea->responsable }}</td>
                     <td>{{ $tarea->fecha_limite->format('d/m/Y') }}</td>
                     <td>{{ $tarea->estado }}</td>
+                    <td>
+                        <a href="{{ route('tareas.edit', $tarea->id) }}">Editar</a>
+                    </td>
                 </tr>
             @empty
                 <tr>

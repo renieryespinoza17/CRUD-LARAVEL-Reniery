@@ -14,12 +14,17 @@ Route::post('/login', [LoginController::class, 'store'])
     ->middleware('throttle:6,1')->name('login.store');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/inicio', function() {
+    Route::get('/inicio', function () {
         return redirect()->route('libros.index');
     })->name('inicio');
 
-    Route::get('/libros', [LibroController::class,'index'])
-    ->name('libros.index');
+    Route::get('/libros', [LibroController::class, 'index'])
+        ->name('libros.index');
+
+    Route::get('/libros/crear', [LibroController::class, 'create'])
+        ->name('libros.create');
+    Route::post('/libros', [LibroController::class, 'store'])
+        ->name('libros.store');
 
     Route::post('/logout', [LoginController::class, 'destroy'])
         ->name('logout');

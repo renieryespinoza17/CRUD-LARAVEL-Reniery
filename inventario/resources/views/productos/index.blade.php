@@ -26,6 +26,9 @@
                             {{ $producto->existencias }}
                         @endif
                     </td>
+                    <td>
+<a href="{{ route('productos.edit', $producto->id) }}">Editar</a>
+</td>
                 </tr>
             @empty
                 <tr>

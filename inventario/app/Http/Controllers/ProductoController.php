@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Validation\Rule;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 class ProductoController extends Controller
@@ -35,4 +35,32 @@ public function store(Request $request)
     return redirect()->route('productos.index')
         ->with('exito', 'Producto creado correctamente.');
 }
+    public function edit(int $id)
+{
+    $producto = Producto::findOrFail($id);
+    return view('productos.edit', ['producto' => $producto]);
+}
+
+public function update(Request $request, int $id)
+{
+    $producto = Producto::findOrFail($id);
+
+    $datos = $request->validate([
+        'codigo' => ['required', 'string',
+            Rule::unique('productos', 'codigo')->ignore($producto)],
+        'nombre' => ['required', 'string', 'max:100'],
+        'precio' => ['required', 'numeric', 'gt:0', 'max:99999999.99'],
+        'existencias' => ['required', 'integer', 'min:0'],
+    ]);
+
+    $producto->codigo = $datos['codigo'];
+    $producto->nombre = $datos['nombre'];
+    $producto->precio = $datos['precio'];
+    $producto->existencias = $datos['existencias'];
+    $producto->save();
+
+    return redirect()->route('productos.index')
+        ->with('exito', 'Producto actualizado correctamente.');
+}
+
 }

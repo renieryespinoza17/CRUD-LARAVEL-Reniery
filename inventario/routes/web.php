@@ -27,6 +27,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/productos', [ProductoController::class, 'store'])
         ->name('productos.store');
 
+    Route::get('/productos/{id}/editar', [ProductoController::class, 'edit'])
+        ->whereNumber('id')->name('productos.edit');
+
+    Route::put('/productos/{id}', [ProductoController::class, 'update'])
+        ->whereNumber('id')->name('productos.update');
+        
     Route::post('/logout', [LoginController::class, 'destroy'])
         ->name('logout');
 });

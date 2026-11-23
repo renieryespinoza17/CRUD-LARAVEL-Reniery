@@ -9,4 +9,5 @@ class Libro extends Model
 {
     /** @use HasFactory<\Database\Factories\LibroFactory> */
     use HasFactory;
+    protected $table = "libros";
 }

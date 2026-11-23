@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/estudiantes/{id}', [EstudianteController::class, 'update'])
         ->whereNumber('id')->name('estudiantes.update');
 
+    Route::delete('/estudiantes/{id}', [EstudianteController::class, 'destroy'])
+        ->whereNumber('id')->name('estudiantes.destroy');
+
     Route::post('/logout', [LoginController::class, 'destroy'])
         ->name('logout');
 });

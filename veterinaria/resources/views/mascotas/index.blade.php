@@ -25,6 +25,12 @@
                     <td>
                         <a href="{{ route('mascotas.edit', $mascota->id) }}">Editar</a>
                     </td>
+                    <form method="POST" action="{{ route('mascotas.destroy', $mascota->id) }}"
+                        onsubmit="return confirm('¿Eliminar esta mascota?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Eliminar</button>
+                    </form>
                 </tr>
             @empty
                 <tr>

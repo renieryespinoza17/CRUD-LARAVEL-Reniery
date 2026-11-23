@@ -22,6 +22,9 @@
                     <td>{{ $mascota->especie }}</td>
                     <td>{{ $mascota->propietario }}</td>
                     <td>{{ $mascota->fecha_nacimiento->format('d/m/Y') }}</td>
+                    <td>
+                        <a href="{{ route('mascotas.edit', $mascota->id) }}">Editar</a>
+                    </td>
                 </tr>
             @empty
                 <tr>
